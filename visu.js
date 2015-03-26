@@ -36,4 +36,4 @@ function include(script) {
 //include("widget_led.js");
 //include("widget_fhem.js");
 include("widget_uzsu.js");
-include("widget_fritz.js");
+include("widget_fritzbox.js");
