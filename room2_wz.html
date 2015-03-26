@@ -1,0 +1,39 @@
+/**
+* -----------------------------------------------------------------------------
+* @package     smartVISU
+* @author      Martin Gleiß
+* @copyright   2012
+* @license     GPL [http://www.gnu.de]
+* -----------------------------------------------------------------------------
+*/
+
+
+{% extends "rooms.html" %}
+
+{% block content %}
+
+
+<div class="preblock">
+hier steht vorgeplänkel
+    </div>
+
+<div class="block">
+	<div class="set-1" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+		<div data-role="collapsible" data-collapsed="false" >
+			<h3>Funksteckdosen</h3>
+			<table width="90%">
+				 <tr><td align="left" width="100px">&nbsp;
+				{{ basic.switch('switch01', 'wz_Stehlampe_SW') }} 
+				
+				{% import "widget_uzsu.html" as visu %}
+				Zeitschaltuhr
+				{{ visu.uzsu_icon('UZSUnum', 'gad_uzsu_wzlicht', '', '', '', '', 'text',['on','off']) }}
+				</td>
+				<td>Funk-Zwischenstecker für Stehlampe im Wohnzimmer !!</td></tr>
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+

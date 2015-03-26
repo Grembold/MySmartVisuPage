@@ -1,0 +1,38 @@
+/**
+* -----------------------------------------------------------------------------
+* @package     smartVISU
+* @author      Martin Gleiß
+* @copyright   2012
+* @license     GPL [http://www.gnu.de]
+* -----------------------------------------------------------------------------
+*/
+
+
+{% extends "rooms.html" %}
+
+{% block content %}
+
+
+<div class="preblock">
+    </div>
+
+<div class="block">
+
+	<div class="set-1" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+		<div data-role="collapsible" data-collapsed="false" >
+			<h3>FritzBox</h3>
+			{% import "widget_fritzbox.html" as fritz %}
+			{{ fritz.sys('fritz_sys', 'gad_fbsys_name', 'gad_fbsys_version', 'gad_fbsys_wlan24', 'gad_fbsys_wlan5', 'gad_fbsys_wlanguest', 'gad_fbsys_gastaktiv' ) }}
+		</div>
+	</div>
+	<div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+		<div data-role="collapsible" data-collapsed="false" >
+			<h3>FritzBox Callmonitor</h3>
+			{% import "widget_fritzbox.html" as fritz %}
+			{{ fritz.callmonitor('fritz_cm', 'gad_fbcm_event', 'gad_fbcm_direction', 'gad_fbcm_intconn', 'gad_fbcm_intnumber', 'gad_fbcm_extconn', 'gad_fbcm_extnumber', 'gad_fbcm_extname', 'gad_fbcm_duration', 'gad_fbcm_timestamp') }}
+		</div>
+	
+</div>
+
+{% endblock %}
+

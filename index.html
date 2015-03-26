@@ -1,0 +1,83 @@
+/**
+* -----------------------------------------------------------------------------
+* @package     smartVISU
+* @author      Martin Gleiß
+* @copyright   2012
+* @license     GPL [http://www.gnu.de]
+* -----------------------------------------------------------------------------
+*/
+
+
+{% extends "base.html" %}
+
+{% block sidebar %}
+
+	{% import "lib.html" as lib %}
+	{{ lib.updatecheck() }}
+
+	{% import "clock.html" as clock %}
+	{{ clock.digiclock('clock') }}
+
+	<div class="center">
+		{{ now|date('l') }}, {{ now|date('d.m.Y') }}
+	</div>
+
+	<hr>
+
+	{% import "weather.html" as weather %}
+	{{ weather.current('weather') }}
+
+	<hr>
+
+	{{ weather.forecastweek('weather_forecast') }}
+
+	<hr>
+	{% import "status.html" as status %}
+	{{ status.log('log2', 'env.core.log', 10) }}
+{% endblock %}
+
+{% block content %}
+
+	{% import "calendar.html" as calendar %}
+	{{ calendar.list('calendarlist', 'Kalender', 5) }}    
+	<hr>
+	
+	{% import "phone.html" as phone %}
+	{{ phone.list('phonelist', 'Telefonliste', 5) }}
+	
+	<hr>
+	
+	<a href="#popupFloorplanLandscape" data-rel="popup" data-transition="flip" data-position-to="window">
+								<img src="pics/fp_Grundriss_small.png" class="ui-li-thumb">
+								<h2>Raumplan</h2>
+								<p>Übersicht der Räume in der Grundrissanzeige</p>
+								<p class="ui-li-aside">Räume</p>
+						</a>
+	
+{% endblock %}
+
+{% block floorplan %}
+		<!-- Start of floorplan popup -->
+		<div data-role="popup" id="popupFloorplanLandscape" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15">
+				<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+				<img src="pics/fp_Grundriss.png" alt="Photo landscape">
+				
+				<div style="position:absolute; top:240px; left:100px;" informid="CUL_HM_HM_LC_SW1_PL2_258428" class="switch">
+					<div id="CUL_HM_HM_LC_SW1_PL2_258428" >
+						<a href="#" id="CUL_HM_HM_LC_SW1_PL2_258428_btn" class="ui-btn ui-corner-all ui-shadow-icon ui-icon-myLightOff ui-btn-icon-notext ui-btn-inline" onclick="HA_cmd('/fhem?XHR=1&amp;cmd.CUL_HM_HM_LC_SW1_PL2_258428=set CUL_HM_HM_LC_SW1_PL2_258428 toggle')"> </a>
+					</div>
+				</div>
+				<div style="position:absolute; top:640px; left:440px;" informid="CUL_HM_HM_LC_SW1_FM_25212F" class="switch">
+					<div id="CUL_HM_HM_LC_SW1_FM_25212F" >
+						<a href="#" id="CUL_HM_HM_LC_SW1_FM_25212F_btn" class="ui-btn ui-corner-all ui-shadow-icon ui-icon-myLightOff ui-btn-icon-notext ui-btn-inline" onclick="HA_cmd('/fhem?XHR=1&amp;cmd.CUL_HM_HM_LC_SW1_FM_25212F=set CUL_HM_HM_LC_SW1_FM_25212F toggle')"> </a>
+					</div>
+				</div>
+				<div style="position:absolute; top:200px; left:350px;" informid="CUL_HM_HM_SEC_SC_2_247E05" class="switch">
+					<div id="CUL_HM_HM_SEC_SC_2_247E05" >
+						<a id="CUL_HM_HM_SEC_SC_2_247E05_btn" class="ui-btn ui-mini ui-corner-all ui-btn-inline" >open</a>
+					</div>
+				</div>
+				
+
+		</div>
+{% endblock %}
